@@ -29,12 +29,15 @@ public class Keeper {
 
         for(int i=0; i<index; i++){
 
-            msg = msg + "Day " + (i+1) + ":\t\t" + mReading[i].getSystolic() + " / " +
+            msg = msg + "Day " + (i+1) + ":\n\n";
+            /*+ mReading[i].getSystolic() + " / " +
                     mReading[i].getDiastolic() + " : " +
                     mReading[i].getBPStatus(mReading[i].getSystolic(), mReading[i].getDiastolic())
                     + "\n\n";
+                    */
         }
-        return msg + showAverage();
+        return msg;
+                //+ showAverage();
     }
 
     public void clearAllReadings(){
@@ -49,6 +52,10 @@ public class Keeper {
     public int getIndex(){
 
         return index;
+    }
+
+    public void setIndex(int ind){
+        index = ind;
     }
 
     public String showAverage(){

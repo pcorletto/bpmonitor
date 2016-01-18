@@ -210,6 +210,12 @@ public class MainActivity extends ActionBarActivity {
 
                     // Set a reading at last index position.
 
+                    SharedPreferences sharedPreferences = MainActivity.this
+                            .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
+                    mIndex = sharedPreferences.getInt(getString(R.string.READING_COUNT), 0);
+
+                    mWeeklyReadingKeeper.setIndex(mIndex);
+
                     mWeeklyReadingKeeper.setAReading(mSystolic, mDiastolic);
 
                     // Store the last reading on a SharedPreferences file so that it can be
@@ -219,7 +225,7 @@ public class MainActivity extends ActionBarActivity {
 
                     mWeeklyReadings = mWeeklyReadingKeeper.getAllReadings();
 
-                    SharedPreferences sharedPreferences = MainActivity.this
+                    sharedPreferences = MainActivity.this
                             .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
