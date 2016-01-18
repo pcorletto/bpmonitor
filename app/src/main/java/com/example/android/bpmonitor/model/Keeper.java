@@ -37,6 +37,15 @@ public class Keeper {
         return msg + showAverage();
     }
 
+    public void clearAllReadings(){
+
+        // Reset index back to 0, and initialize the array of readings.
+
+        index = 0;
+        mReading = new Reading[7];
+    }
+
+
     public int getIndex(){
 
         return index;

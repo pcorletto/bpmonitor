@@ -317,7 +317,10 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
+                // Reset index back to zero and initialize array. This is done in
+                // clearAllReadings of Keeper.java
 
+                mWeeklyReadingKeeper.clearAllReadings();
 
                 // Clear all EditTexts
                 lastSystolicEditText.setText("");
