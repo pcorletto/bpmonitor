@@ -216,12 +216,21 @@ public class MainActivity extends ActionBarActivity {
 
                     mWeeklyReadingKeeper.setIndex(mIndex);
 
+                    // Added a Toast for debugging purposes, to keep track of index before
+                    // storing the reading values.
+                    Toast.makeText(MainActivity.this, "Index before storing the reading is: " +
+                            mIndex, Toast.LENGTH_LONG).show();
+
                     mWeeklyReadingKeeper.setAReading(mSystolic, mDiastolic);
 
                     // Store the last reading on a SharedPreferences file so that it can be
                     // displayed even after the app is stopped.
 
                     mIndex = mWeeklyReadingKeeper.getIndex();
+
+                    // Added Toast for debugging purposes, to keep track of index
+                    // after storing the values
+                    Toast.makeText(MainActivity.this, "Next Index to Store is: " + mIndex, Toast.LENGTH_LONG).show();
 
                     mWeeklyReadings = mWeeklyReadingKeeper.getAllReadings();
 
