@@ -55,6 +55,7 @@ public class MainActivity extends ActionBarActivity {
         mDiastolic = sharedPreferences.getInt(getString(R.string.DIASTOLIC_READING),0);
         mIndex = sharedPreferences.getInt(getString(R.string.READING_COUNT), 0);
         mWeeklyReadings = sharedPreferences.getString(getString(R.string.WEEKLY_READINGS),"");
+        mSystolicDiastolicString = sharedPreferences.getString(getString(R.string.SYSTOLIC_DIASTOLIC_STRING), "");
 
         // Display any previous readings in the edit texts for last systolic and diastolic
         // and readingCountEditText
@@ -233,6 +234,8 @@ public class MainActivity extends ActionBarActivity {
                     // 120 and 80 on the systolic and diastolic values for the readings
                     // from index 0 to index = currentIndex
 
+                    mWeeklyReadingKeeper.setSystolicDiastolicString(mSystolicDiastolicString);
+
                     mWeeklyReadingKeeper.reloadArray();
 
                     mWeeklyReadingKeeper.setAReading(mSystolic, mDiastolic);
@@ -250,6 +253,9 @@ public class MainActivity extends ActionBarActivity {
 
                     mSystolicDiastolicString = mWeeklyReadingKeeper.getAllSystolicDiastolic();
 
+                    // Display mSystolicDiastolicString in a Toast, for debugging purposes.
+                    Toast.makeText(MainActivity.this, mSystolicDiastolicString, Toast.LENGTH_LONG).show();
+
                     sharedPreferences = MainActivity.this
                             .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
 
@@ -258,6 +264,8 @@ public class MainActivity extends ActionBarActivity {
                     editor.putInt(getString(R.string.DIASTOLIC_READING), mDiastolic);
                     editor.putInt(getString(R.string.READING_COUNT), mIndex);
                     editor.putString(getString(R.string.WEEKLY_READINGS), mWeeklyReadings);
+                    // Added, just trying
+                    editor.putString(getString(R.string.SYSTOLIC_DIASTOLIC_STRING), mSystolicDiastolicString);
                     editor.commit();
 
                     // Display this stored reading in the edit texts for last systolic and diastolic

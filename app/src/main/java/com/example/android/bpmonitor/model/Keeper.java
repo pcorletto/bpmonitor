@@ -15,7 +15,7 @@ public class Keeper {
 
     public void reloadArray(){
 
-        for(int i=0; i<=mIndex; i++) {
+        for(int i=0; i<mIndex; i++) {
 
             // Store the dummy value "120" into systolic, just for testing.
             // Later I will extract the systolic value from the readings
@@ -26,8 +26,15 @@ public class Keeper {
             // Later I will extract the diastolic value from the readings
             // passed in from the stored mWeeklyReadings string in MainActivity.
 
+            String systolic = mSystolicDiastolicString.substring((5*i),(5*i+3));
 
-            mReading[i] = new Reading(120, 80);
+            int s = Integer.parseInt(systolic);
+
+            String diastolic = mSystolicDiastolicString.substring((5*i+3),(5*i+5));
+
+            int d = Integer.parseInt(diastolic);
+
+            mReading[i] = new Reading(s, d);
 
         }
 

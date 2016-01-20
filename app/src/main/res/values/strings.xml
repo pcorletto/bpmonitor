@@ -17,6 +17,7 @@
     <string name="DIASTOLIC_READING">DIASTOLIC_READING</string>
     <string name="READING_COUNT">READING_COUNT</string>
     <string name="WEEKLY_READINGS">WEEKLY_READINGS</string>
+    <string name="SYSTOLIC_DIASTOLIC_STRING">SYSTOLIC_DIASTOLIC_STRING</string>
     <string name="title_activity_display">DisplayActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="return_main_prompt">RETURN TO MAIN SCREEN</string>
