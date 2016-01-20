@@ -30,6 +30,7 @@ public class MainActivity extends ActionBarActivity {
     private Keeper mWeeklyReadingKeeper = new Keeper();
     private int mIndex;
     private String mWeeklyReadings;
+    private String mSystolicDiastolicString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,12 +215,25 @@ public class MainActivity extends ActionBarActivity {
                             .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
                     mIndex = sharedPreferences.getInt(getString(R.string.READING_COUNT), 0);
 
+
+
                     mWeeklyReadingKeeper.setIndex(mIndex);
 
                     // Added a Toast for debugging purposes, to keep track of index before
                     // storing the reading values.
                     Toast.makeText(MainActivity.this, "Index before storing the reading is: " +
                             mIndex, Toast.LENGTH_LONG).show();
+
+                    // Re-fill the readings keeper array with the values previously stored
+                    // in the mWeeklyReadingsString stored in the SharedPreferences file.
+                    // I will use a method I called "reloadArray".
+                    // Otherwise, we would get a Null Pointer Exception for trying to
+                    // get values from an array with empty positions when we call the
+                    // getAllReadings method. First, I will simply store the dummy values
+                    // 120 and 80 on the systolic and diastolic values for the readings
+                    // from index 0 to index = currentIndex
+
+                    mWeeklyReadingKeeper.reloadArray();
 
                     mWeeklyReadingKeeper.setAReading(mSystolic, mDiastolic);
 
@@ -233,6 +247,8 @@ public class MainActivity extends ActionBarActivity {
                     Toast.makeText(MainActivity.this, "Next Index to Store is: " + mIndex, Toast.LENGTH_LONG).show();
 
                     mWeeklyReadings = mWeeklyReadingKeeper.getAllReadings();
+
+                    mSystolicDiastolicString = mWeeklyReadingKeeper.getAllSystolicDiastolic();
 
                     sharedPreferences = MainActivity.this
                             .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
