@@ -17,14 +17,8 @@ public class Keeper {
 
         for(int i=0; i<mIndex; i++) {
 
-            // Store the dummy value "120" into systolic, just for testing.
-            // Later I will extract the systolic value from the readings
-            // passed in from the stored mWeeklyReadings string in MainActivity.
-
-
-            // Store the dummy value "80" into diastolic, just for testing.
-            // Later I will extract the diastolic value from the readings
-            // passed in from the stored mWeeklyReadings string in MainActivity.
+            // Extract the diastolic and systolic values from the readings
+            // from the stored mSystolicDiastolicString string passed in from MainActivity.
 
             String systolic = mSystolicDiastolicString.substring((5*i),(5*i+3));
 
@@ -58,8 +52,6 @@ public class Keeper {
         String msg = "";
 
         for(int i=0; i<mIndex; i++){
-
-
 
             msg = msg + "Day " + (i+1) + ":\n\n" +
                     mReading[i].getSystolic() + " / " +

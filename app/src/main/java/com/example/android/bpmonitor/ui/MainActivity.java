@@ -220,19 +220,14 @@ public class MainActivity extends ActionBarActivity {
 
                     mWeeklyReadingKeeper.setIndex(mIndex);
 
-                    // Added a Toast for debugging purposes, to keep track of index before
-                    // storing the reading values.
-                    Toast.makeText(MainActivity.this, "Index before storing the reading is: " +
-                            mIndex, Toast.LENGTH_LONG).show();
-
                     // Re-fill the readings keeper array with the values previously stored
-                    // in the mWeeklyReadingsString stored in the SharedPreferences file.
+                    // in the mSystolicDiastolicString stored in the SharedPreferences file.
                     // I will use a method I called "reloadArray".
                     // Otherwise, we would get a Null Pointer Exception for trying to
                     // get values from an array with empty positions when we call the
-                    // getAllReadings method. First, I will simply store the dummy values
-                    // 120 and 80 on the systolic and diastolic values for the readings
-                    // from index 0 to index = currentIndex
+                    // getAllReadings method. I will store the extracted values from
+                    // systolic and diastolic (mSystolicDiastolicString) into index from
+                    // 0 to currentIndex
 
                     mWeeklyReadingKeeper.setSystolicDiastolicString(mSystolicDiastolicString);
 
@@ -245,16 +240,9 @@ public class MainActivity extends ActionBarActivity {
 
                     mIndex = mWeeklyReadingKeeper.getIndex();
 
-                    // Added Toast for debugging purposes, to keep track of index
-                    // after storing the values
-                    Toast.makeText(MainActivity.this, "Next Index to Store is: " + mIndex, Toast.LENGTH_LONG).show();
-
                     mWeeklyReadings = mWeeklyReadingKeeper.getAllReadings();
 
                     mSystolicDiastolicString = mWeeklyReadingKeeper.getAllSystolicDiastolic();
-
-                    // Display mSystolicDiastolicString in a Toast, for debugging purposes.
-                    Toast.makeText(MainActivity.this, mSystolicDiastolicString, Toast.LENGTH_LONG).show();
 
                     sharedPreferences = MainActivity.this
                             .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
@@ -264,7 +252,6 @@ public class MainActivity extends ActionBarActivity {
                     editor.putInt(getString(R.string.DIASTOLIC_READING), mDiastolic);
                     editor.putInt(getString(R.string.READING_COUNT), mIndex);
                     editor.putString(getString(R.string.WEEKLY_READINGS), mWeeklyReadings);
-                    // Added, just trying
                     editor.putString(getString(R.string.SYSTOLIC_DIASTOLIC_STRING), mSystolicDiastolicString);
                     editor.commit();
 
@@ -307,7 +294,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                // If the keeper is empty, alert the user.
+
 
                 //Get stored readings from SharedPreferences file
                 SharedPreferences sharedPreferences = MainActivity.this
@@ -315,6 +302,8 @@ public class MainActivity extends ActionBarActivity {
 
                 mIndex = sharedPreferences.getInt(getString(R.string.READING_COUNT),0);
                 mWeeklyReadings = sharedPreferences.getString(getString(R.string.WEEKLY_READINGS),"");
+
+                // If the keeper is empty, alert the user.
 
                 if(mIndex==0){
                     Toast.makeText(MainActivity.this,
@@ -325,8 +314,6 @@ public class MainActivity extends ActionBarActivity {
 
                 else {
 
-
-                    //mWeeklyReadings = mWeeklyReadingKeeper.getAllReadings();
 
                     // Start a new Intent and transmit the weeklyReadings string to a new screen
                     // that displays the results on a list view.

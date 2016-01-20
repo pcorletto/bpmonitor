@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:text="@string/return_main_prompt"
         android:id="@+id/returnMainButton"
+        android:background="@android:color/holo_green_light"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
