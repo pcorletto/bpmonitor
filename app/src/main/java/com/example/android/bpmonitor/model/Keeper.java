@@ -20,11 +20,15 @@ public class Keeper {
             // Extract the diastolic and systolic values from the readings
             // from the stored mSystolicDiastolicString string passed in from MainActivity.
 
-            String systolic = mSystolicDiastolicString.substring((5*i),(5*i+3));
+            String systolic = mSystolicDiastolicString.substring((6*i),(6*i+3));
 
             int s = Integer.parseInt(systolic);
 
-            String diastolic = mSystolicDiastolicString.substring((5*i+3),(5*i+5));
+            String diastolic1 = mSystolicDiastolicString.substring((6*i+3),(6*i+5));
+
+            char c = mSystolicDiastolicString.charAt(6*i+5);
+
+            String diastolic = diastolic1 + c;
 
             int d = Integer.parseInt(diastolic);
 
@@ -50,12 +54,27 @@ public class Keeper {
 
     public String getAllReadings(){
         String msg = "";
+        int systolicValue;
+        int diastolicValue;
+        String systolicString;
+        String diastolicString;
 
         for(int i=0; i<mIndex; i++){
 
+            systolicValue = mReading[i].getSystolic();
+            diastolicValue = mReading[i].getDiastolic();
+
+            // Validate: if the systolic or diastolic values have only 1 or 2 digits, make them
+            // three digits wide by putting in one or two leading zeroes.
+
+            systolicString = putLeadingZeroes(systolicValue);
+            diastolicString = putLeadingZeroes(diastolicValue);
+                     
+            // Concatenate the days, the systolic and diastolic values and the pressure status.
+
             msg = msg + "Day " + (i+1) + ":\n\n" +
-                    mReading[i].getSystolic() + " / " +
-                    mReading[i].getDiastolic() + " : " +
+                    systolicString + " / " +
+                    diastolicString + " : " +
                     mReading[i].getBPStatus(mReading[i].getSystolic(), mReading[i].getDiastolic())
                     + "\n\n";
 
@@ -65,12 +84,27 @@ public class Keeper {
 
     public String getAllSystolicDiastolic(){
         String msg = "";
+        int systolicValue;
+        int diastolicValue;
+        String systolicString;
+        String diastolicString;
 
         for(int i=0; i<mIndex; i++){
 
-            msg = msg + mReading[i].getSystolic() + mReading[i].getDiastolic();
+            systolicValue = mReading[i].getSystolic();
+            diastolicValue = mReading[i].getDiastolic();
 
-        }
+            // Validate: if the systolic or diastolic values have only 1 or 2 digits, make them
+            // three digits wide by putting in one or two leading zeroes.
+
+            systolicString = putLeadingZeroes(systolicValue);
+
+            diastolicString = putLeadingZeroes(diastolicValue);
+
+            msg = msg + systolicString + diastolicString;
+
+            }
+
         return msg;
 
     }
@@ -143,5 +177,26 @@ public class Keeper {
             return false;
         }
     }
+
+    public String putLeadingZeroes(int value){
+
+        if(value<10){
+            return "00" + value;
+
+        }
+
+        else if((value>=10)&&(value<100)){
+            return "0" + value;
+        }
+
+        else{
+            // if value >=100
+
+            return value + "";
+
+        }
+
+    }
+
 
 }

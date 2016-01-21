@@ -70,7 +70,8 @@
         android:textColor="#ff3620ff"
         android:layout_below="@+id/systolicEditText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -130,7 +131,8 @@
         android:layout_alignBottom="@+id/lastDiastolicEditText"
         android:layout_toLeftOf="@+id/textView"
         android:layout_toRightOf="@+id/lastReadingLabel"
-        android:layout_toEndOf="@+id/lastReadingLabel"/>
+        android:layout_toEndOf="@+id/lastReadingLabel"
+        android:gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -150,7 +152,8 @@
         android:id="@+id/lastDiastolicEditText"
         android:layout_alignTop="@+id/lastReadingLabel"
         android:layout_alignLeft="@+id/diastolicTextView"
-        android:layout_alignStart="@+id/diastolicTextView"/>
+        android:layout_alignStart="@+id/diastolicTextView"
+        android:gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="wrap_content"

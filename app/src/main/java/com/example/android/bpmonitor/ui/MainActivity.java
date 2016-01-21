@@ -200,6 +200,7 @@ public class MainActivity extends ActionBarActivity {
 
                     mSystolic = Integer.parseInt(mSystolicString);
 
+
                     String mDiastolicString = diastolicEditText.getText().toString();
 
                     // Check if the user did not enter anything. If no entry, then alert
@@ -391,7 +392,6 @@ public class MainActivity extends ActionBarActivity {
             return false;
         }
     }
-
 
 
 }
