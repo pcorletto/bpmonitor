@@ -94,9 +94,8 @@ public class MainActivity extends ActionBarActivity {
                 //long.
 
                 if(mSystolicString.length()>3){
-                    systolicEditText.setError("Max is 999!");
-                    return;
-
+                systolicEditText.setError("Max is 999!");
+                return;
                 }
 
                 mSystolic = Integer.parseInt(mSystolicString);
@@ -113,9 +112,8 @@ public class MainActivity extends ActionBarActivity {
                 //long.
 
                 if(mDiastolicString.length()>3){
-                    diastolicEditText.setError("Max is 999!");
-                    return;
-
+                diastolicEditText.setError("Max is 999!");
+                return;
                 }
 
                 mDiastolic = Integer.parseInt(mDiastolicString);
@@ -220,9 +218,8 @@ public class MainActivity extends ActionBarActivity {
                     //long.
 
                     if(mSystolicString.length()>3){
-                        systolicEditText.setError("Max is 999!");
-                        return;
-
+                    systolicEditText.setError("Max is 999!");
+                    return;
                     }
 
                     mSystolic = Integer.parseInt(mSystolicString);
@@ -240,8 +237,8 @@ public class MainActivity extends ActionBarActivity {
                     //long.
 
                     if(mDiastolicString.length()>3){
-                        diastolicEditText.setError("Max is 999!");
-                        return;
+                    diastolicEditText.setError("Max is 999!");
+                    return;
 
                     }
 

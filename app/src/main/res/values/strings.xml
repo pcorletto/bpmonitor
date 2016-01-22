@@ -23,6 +23,7 @@
     <string name="return_main_prompt">RETURN TO MAIN SCREEN</string>
     <string name="weekly_readings">weekly_readings</string>
     <string name="reading_count_prompt">Out of 7 days, you have stored:</string>
+    <string name="daily_readings_array">daily_readings_array</string>
 
 </resources>
 
