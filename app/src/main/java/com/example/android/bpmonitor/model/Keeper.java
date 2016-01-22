@@ -69,7 +69,7 @@ public class Keeper {
 
             systolicString = putLeadingZeroes(systolicValue);
             diastolicString = putLeadingZeroes(diastolicValue);
-                     
+
             // Concatenate the days, the systolic and diastolic values and the pressure status.
 
             msg = msg + "Day " + (i+1) + ":\n\n" +

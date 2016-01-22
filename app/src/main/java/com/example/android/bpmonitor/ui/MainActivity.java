@@ -90,6 +90,15 @@ public class MainActivity extends ActionBarActivity {
                     return;
                 }
 
+                // If the value entered is 1000 or greater, alert that it can only be three digits
+                //long.
+
+                if(mSystolicString.length()>3){
+                    systolicEditText.setError("Max is 999!");
+                    return;
+
+                }
+
                 mSystolic = Integer.parseInt(mSystolicString);
 
                 String mDiastolicString = diastolicEditText.getText().toString();
@@ -98,6 +107,15 @@ public class MainActivity extends ActionBarActivity {
                 if(TextUtils.isEmpty(mDiastolicString)){
                     diastolicEditText.setError("You need to enter a reading!");
                     return;
+                }
+
+                // If the value entered is 1000 or greater, alert that it can only be three digits
+                //long.
+
+                if(mDiastolicString.length()>3){
+                    diastolicEditText.setError("Max is 999!");
+                    return;
+
                 }
 
                 mDiastolic = Integer.parseInt(mDiastolicString);
@@ -198,6 +216,15 @@ public class MainActivity extends ActionBarActivity {
                         return;
                     }
 
+                    // If the value entered is 1000 or greater, alert that it can only be three digits
+                    //long.
+
+                    if(mSystolicString.length()>3){
+                        systolicEditText.setError("Max is 999!");
+                        return;
+
+                    }
+
                     mSystolic = Integer.parseInt(mSystolicString);
 
 
@@ -207,6 +234,15 @@ public class MainActivity extends ActionBarActivity {
                     if (TextUtils.isEmpty(mDiastolicString)) {
                         diastolicEditText.setError("You need to enter a reading!");
                         return;
+                    }
+
+                    // If the value entered is 1000 or greater, alert that it can only be three digits
+                    //long.
+
+                    if(mDiastolicString.length()>3){
+                        diastolicEditText.setError("Max is 999!");
+                        return;
+
                     }
 
                     mDiastolic = Integer.parseInt(mDiastolicString);
