@@ -38,6 +38,7 @@ public class MainActivity extends ActionBarActivity {
     private int mIndex;
     private String mWeeklyReadings;
     private String mSystolicDiastolicString;
+    private String mLanguagePreference;
 
 
     @Override
@@ -65,6 +66,8 @@ public class MainActivity extends ActionBarActivity {
         mIndex = sharedPreferences.getInt(getString(R.string.READING_COUNT), 0);
         mWeeklyReadings = sharedPreferences.getString(getString(R.string.WEEKLY_READINGS),"");
         mSystolicDiastolicString = sharedPreferences.getString(getString(R.string.SYSTOLIC_DIASTOLIC_STRING), "");
+        mLanguagePreference = sharedPreferences.getString(getString(R.string.LANGUAGE_PREF), "en");
+
 
         // Display any previous readings in the edit texts for last systolic and diastolic
         // and readingCountEditText
@@ -91,13 +94,11 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                setLocal("es");
-
                 String mSystolicString = systolicEditText.getText().toString();
 
                 // Check if the user did not enter anything. If no entry, then alert
                 if(TextUtils.isEmpty(mSystolicString)){
-                    systolicEditText.setError("You need to enter a reading!");
+                    systolicEditText.setError(getString(R.string.empty_reading_alert));
                     return;
                 }
 
@@ -105,7 +106,7 @@ public class MainActivity extends ActionBarActivity {
                 //long.
 
                 if(mSystolicString.length()>3){
-                systolicEditText.setError("Max is 999!");
+                systolicEditText.setError(getString(R.string.max_alert));
                 return;
                 }
 
@@ -115,7 +116,7 @@ public class MainActivity extends ActionBarActivity {
 
                 // Check if the user did not enter anything. If no entry, then alert
                 if(TextUtils.isEmpty(mDiastolicString)){
-                    diastolicEditText.setError("You need to enter a reading!");
+                    diastolicEditText.setError(getString(R.string.empty_reading_alert));
                     return;
                 }
 
@@ -123,7 +124,7 @@ public class MainActivity extends ActionBarActivity {
                 //long.
 
                 if(mDiastolicString.length()>3){
-                diastolicEditText.setError("Max is 999!");
+                diastolicEditText.setError(getString(R.string.max_alert));
                 return;
                 }
 
@@ -142,7 +143,7 @@ public class MainActivity extends ActionBarActivity {
                 // Check whether pressure is low, normal or high, and
                 // display the check status in a toast
                 bpCheckStatus = mReading.getBPStatus(mSystolic, mDiastolic);
-                Toast.makeText(MainActivity.this, "Your blood pressure is " +
+                Toast.makeText(MainActivity.this, getString(R.string.your_blood_pressure_is) +
                         bpCheckStatus, Toast.LENGTH_LONG).show();
 
                 // Store the last reading on a SharedPreferences file so that it can be
@@ -154,6 +155,7 @@ public class MainActivity extends ActionBarActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt(getString(R.string.SYSTOLIC_READING), mSystolic);
                 editor.putInt(getString(R.string.DIASTOLIC_READING), mDiastolic);
+                editor.putString(getString(R.string.LANGUAGE_PREF), mLanguagePreference);
                 editor.commit();
 
                 // Display this checked readings in the edit texts for last systolic and diastolic
@@ -213,7 +215,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
 
                 if (mWeeklyReadingKeeper.isFull()) {
-                    Toast.makeText(MainActivity.this, "Keeper is full. It can store a maximum of 7 days! Clear it first.",
+                    Toast.makeText(MainActivity.this, getString(R.string.keeper_full_message),
                             Toast.LENGTH_LONG).show();
                 } else {
 
@@ -221,7 +223,7 @@ public class MainActivity extends ActionBarActivity {
 
                     // Check if the user did not enter anything. If no entry, then alert
                     if (TextUtils.isEmpty(mSystolicString)) {
-                        systolicEditText.setError("You need to enter a reading!");
+                        systolicEditText.setError(getString(R.string.empty_reading_alert));
                         return;
                     }
 
@@ -229,7 +231,7 @@ public class MainActivity extends ActionBarActivity {
                     //long.
 
                     if(mSystolicString.length()>3){
-                    systolicEditText.setError("Max is 999!");
+                    systolicEditText.setError(getString(R.string.max_alert));
                     return;
                     }
 
@@ -240,7 +242,7 @@ public class MainActivity extends ActionBarActivity {
 
                     // Check if the user did not enter anything. If no entry, then alert
                     if (TextUtils.isEmpty(mDiastolicString)) {
-                        diastolicEditText.setError("You need to enter a reading!");
+                        diastolicEditText.setError(getString(R.string.empty_reading_alert));
                         return;
                     }
 
@@ -248,7 +250,7 @@ public class MainActivity extends ActionBarActivity {
                     //long.
 
                     if(mDiastolicString.length()>3){
-                    diastolicEditText.setError("Max is 999!");
+                    diastolicEditText.setError(getString(R.string.max_alert));
                     return;
 
                     }
@@ -298,6 +300,7 @@ public class MainActivity extends ActionBarActivity {
                     editor.putInt(getString(R.string.READING_COUNT), mIndex);
                     editor.putString(getString(R.string.WEEKLY_READINGS), mWeeklyReadings);
                     editor.putString(getString(R.string.SYSTOLIC_DIASTOLIC_STRING), mSystolicDiastolicString);
+                    editor.putString(getString(R.string.LANGUAGE_PREF), mLanguagePreference);
                     editor.commit();
 
                     // Display this stored reading in the edit texts for last systolic and diastolic
@@ -352,7 +355,7 @@ public class MainActivity extends ActionBarActivity {
 
                 if(mIndex==0){
                     Toast.makeText(MainActivity.this,
-                            "You do not have any stored readings to display yet, store some first!",
+                            getString(R.string.empty_keeper_alert),
                             Toast.LENGTH_LONG).show();
 
                 }
@@ -462,13 +465,15 @@ public class MainActivity extends ActionBarActivity {
                 if (item.isChecked())
                     item.setChecked(false);
                 else item.setChecked(true);
-                setLocal("en");
+                mLanguagePreference="en";
+                setLocal(mLanguagePreference);
                 return true;
             case R.id.espanol:
                 if (item.isChecked())
                     item.setChecked(false);
                 else item.setChecked(true);
-                setLocal("es");
+                mLanguagePreference="es";
+                setLocal(mLanguagePreference);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

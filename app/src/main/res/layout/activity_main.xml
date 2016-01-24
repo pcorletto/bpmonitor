@@ -17,8 +17,7 @@
         android:textSize="21sp"
         android:textColor="#ffff2f52"
         android:layout_below="@+id/lastSystolicEditText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"/>
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:layout_width="match_parent"
@@ -180,20 +179,22 @@
         android:layout_height="wrap_content"
         android:text="@string/reading_count_prompt"
         android:id="@+id/readingCountTextView"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="29dp"
         android:layout_below="@+id/systolicTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_toLeftOf="@+id/readingCountEditText"
+        android:layout_toStartOf="@+id/readingCountEditText"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/readingCountEditText"
-        android:layout_below="@+id/diastolicTextView"
-        android:layout_toRightOf="@+id/readingCountTextView"
+        android:gravity="center_horizontal"
+        android:layout_alignBaseline="@+id/readingCountTextView"
+        android:layout_alignBottom="@+id/readingCountTextView"
+        android:layout_alignLeft="@+id/diastolicTextView"
+        android:layout_alignStart="@+id/diastolicTextView"
         android:layout_alignRight="@+id/enterBPTextView"
-        android:layout_alignEnd="@+id/enterBPTextView"
-        android:gravity="center_horizontal"/>
+        android:layout_alignEnd="@+id/enterBPTextView"/>
 
 </RelativeLayout>
 

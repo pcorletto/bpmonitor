@@ -3,11 +3,11 @@
 
     <string name="app_name">Monitor de Presión Arterial</string>
     <string name="last_reading_prompt">Ultima lectura:</string>
-    <string name="enter_bp_reading_prompt">Entra Lectura de Presion Arterial</string>
+    <string name="enter_bp_reading_prompt">Entra Lectura Presión Arterial</string>
     <string name="systolic_prompt">SISTOLICA</string>
     <string name="diastolic_prompt">DIASTOLICA</string>
-    <string name="bp_check_status_button_prompt">Chequea lectura dia individual</string>
-    <string name="store_button_prompt">Guarda lectura dia individual</string>
+    <string name="bp_check_status_button_prompt">Chequea lectura día individual</string>
+    <string name="store_button_prompt">Guarda lectura día individual</string>
     <string name="display_stored_readings_button_prompt">Muestra lecturas semanales guardadas</string>
     <string name="reset_UI_button_prompt">Vuelve a entrar lectura individual</string>
     <string name="clear_weekly_readings">Borra lecturas semanales</string>
@@ -22,6 +22,17 @@
     <string name="hello_world">Hello world!</string>
     <string name="return_main_prompt">RETURN TO MAIN SCREEN</string>
     <string name="weekly_readings">weekly_readings</string>
-    <string name="reading_count_prompt">De 7 dias, has guardado:</string>
+    <string name="reading_count_prompt">De 7 días, has guardado:</string>
     <string name="daily_readings_array">daily_readings_array</string>
+    <string name="empty_reading_alert">¡Necesitas entrar una lectura!</string>
+    <string name="max_alert">El máximo es 999!</string>
+    <string name="keeper_full_message">Archivo está lleno. Se puede almacenar un máximo de 7 días de lecturas. Bórralas primero.</string>
+    <string name="empty_keeper_alert">No tienes ningunas lecturas almacenadas que mostrar todavía. ¡Guarda algunas primero!</string>
+    <string name="your_blood_pressure_is">Tu presión está: </string>
+    <string name="high_pressure_toast">alta</string>
+    <string name="normal_pressure_toast">normal</string>
+    <string name="low_pressure_toast">baja</string>
+    <string name="sys_low_dias_high_toast">La sistólica baja y la diastólica alta</string>
+    <string name="sys_high_dias_low_toast">La sistólica alta y la diastólica baja</string>
+
 </resources>

@@ -18,6 +18,7 @@
     <string name="READING_COUNT">READING_COUNT</string>
     <string name="WEEKLY_READINGS">WEEKLY_READINGS</string>
     <string name="SYSTOLIC_DIASTOLIC_STRING">SYSTOLIC_DIASTOLIC_STRING</string>
+    <string name="LANGUAGE_PREF">LANGUAGE_PREF</string>
     <string name="title_activity_display">DisplayActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="return_main_prompt">RETURN TO MAIN SCREEN</string>
@@ -26,6 +27,17 @@
     <string name="daily_readings_array">daily_readings_array</string>
     <string name="English">English</string>
     <string name="Espanol">Espanol</string>
+    <string name="empty_reading_alert">You need to enter a reading!</string>
+    <string name="max_alert">Max is 999!</string>
+    <string name="keeper_full_message">Keeper is full. It can store a maximum of 7 days! Clear it first.</string>
+    <string name="empty_keeper_alert">You do not have any stored readings to display yet. Store some first!</string>
+    <string name="your_blood_pressure_is">Your blood pressure is: </string>
+    <string name="high_pressure_toast">high</string>
+    <string name="normal_pressure_toast">normal</string>
+    <string name="low_pressure_toast">low</string>
+    <string name="sys_low_dias_high_toast"> systolic low and diastolic high</string>
+    <string name="sys_high_dias_low_toast">systolic high and diastolic low</string>
+
 
 </resources>
 
