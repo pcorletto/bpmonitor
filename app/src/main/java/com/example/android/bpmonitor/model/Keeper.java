@@ -155,7 +155,7 @@ public class Keeper {
         avgDiastolic = sumDiastolic / mIndex;
         bpStatus = mBPStatus.getBPStatus(avgSystolic, avgDiastolic);
 
-        avg = avg + "\n\n" +  avgSystolic + " / " + avgDiastolic + " : " + bpStatus;
+        avg = avg + ":\t\t" +  avgSystolic + " / " + avgDiastolic + " : " + bpStatus;
 
         return avg;
 

@@ -34,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
     private EditText lastSystolicEditText, lastDiastolicEditText,
             systolicEditText, diastolicEditText, readingCountEditText;
     private Button bpCheckButton, storeReadingButton, displayReadingsButton, resetUIButton,
-            clearWeeklyReadingsButton;
+            clearWeeklyReadingsButton, hideButton;
     private int mSystolic, mDiastolic;
     private String bpCheckStatus;
     private Reading mReading = new Reading();
@@ -60,6 +60,7 @@ public class MainActivity extends ActionBarActivity {
         resetUIButton = (Button) findViewById(R.id.resetUIButton);
         readingCountEditText = (EditText) findViewById(R.id.readingCountEditText);
         clearWeeklyReadingsButton = (Button) findViewById(R.id.clearWeeklyReadingsButton);
+        hideButton = (Button) findViewById(R.id.hideButton);
 
         // Retrieve any previous reading stored on the SharedPreferences file
 
@@ -443,6 +444,17 @@ public class MainActivity extends ActionBarActivity {
 
 
 
+            }
+        });
+
+        hideButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (v != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
             }
         });
 
