@@ -73,7 +73,7 @@ public class Keeper {
 
             // Concatenate the days, the systolic and diastolic values and the pressure status.
 
-                    msg = msg + "Day " + (i+1) + ":\n\n" +
+                    msg = msg + "Day " + (i+1) + ":\t\t" +
                     systolicString + " / " +
                     diastolicString + " : " +
                     mReading[i].getBPStatus(mReading[i].getSystolic(), mReading[i].getDiastolic())
