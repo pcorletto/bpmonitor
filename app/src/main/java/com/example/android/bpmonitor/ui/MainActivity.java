@@ -1,6 +1,8 @@
 package com.example.android.bpmonitor.ui;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -24,6 +26,8 @@ import com.example.android.bpmonitor.model.Keeper;
 import com.example.android.bpmonitor.model.Reading;
 
 import java.util.Locale;
+
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -391,25 +395,53 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                // Reset index back to zero and initialize array. This is done in
-                // clearAllReadings of Keeper.java
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-                mWeeklyReadingKeeper.clearAllReadings();
+                builder.setTitle(getString(R.string.clear_readings_confirm_message));
+                builder.setMessage(getString(R.string.clear_readings_confirm_question));
 
-                // Clear all EditTexts
-                lastSystolicEditText.setText("");
-                lastDiastolicEditText.setText("");
-                readingCountEditText.setText("");
-                systolicEditText.setText("");
-                diastolicEditText.setText("");
-                systolicEditText.requestFocus();
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
-                SharedPreferences sharedPreferences = MainActivity.this
-                        .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do do my action here
+                        // Reset index back to zero and initialize array. This is done in
+                        // clearAllReadings of Keeper.java
 
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear();
-                editor.commit();
+                        mWeeklyReadingKeeper.clearAllReadings();
+
+                        // Clear all EditTexts
+                        lastSystolicEditText.setText("");
+                        lastDiastolicEditText.setText("");
+                        readingCountEditText.setText("");
+                        systolicEditText.setText("");
+                        diastolicEditText.setText("");
+                        systolicEditText.requestFocus();
+
+                        SharedPreferences sharedPreferences = MainActivity.this
+                                .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
+
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear();
+                        editor.commit();
+
+                        dialog.dismiss();
+                    }
+
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // I do not need any action here you might
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
 
             }
         });

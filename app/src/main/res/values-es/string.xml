@@ -34,5 +34,9 @@
     <string name="low_pressure_toast">baja</string>
     <string name="sys_low_dias_high_toast">La sistólica baja y la diastólica alta</string>
     <string name="sys_high_dias_low_toast">La sistólica alta y la diastólica baja</string>
+    <string name="yes_string">SI</string>
+    <string name="no_string">NO</string>
+    <string name="clear_readings_confirm_message">BORRAR TODAS LAS LECTURAS GUARDADAS ESTA SEMANA</string>
+    <string name="clear_readings_confirm_question">¿Estás seguro de que quieres borrarlas?</string>
 
 </resources>
