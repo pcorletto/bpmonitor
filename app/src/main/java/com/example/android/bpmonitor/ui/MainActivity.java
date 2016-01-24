@@ -3,10 +3,15 @@ package com.example.android.bpmonitor.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -17,6 +22,8 @@ import android.widget.Toast;
 import com.example.android.bpmonitor.R;
 import com.example.android.bpmonitor.model.Keeper;
 import com.example.android.bpmonitor.model.Reading;
+
+import java.util.Locale;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -32,10 +39,12 @@ public class MainActivity extends ActionBarActivity {
     private String mWeeklyReadings;
     private String mSystolicDiastolicString;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         lastSystolicEditText = (EditText) findViewById(R.id.lastSystolicEditText);
         lastDiastolicEditText = (EditText) findViewById(R.id.lastDiastolicEditText);
         systolicEditText = (EditText) findViewById(R.id.systolicEditText);
@@ -81,6 +90,8 @@ public class MainActivity extends ActionBarActivity {
         bpCheckButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                setLocal("es");
 
                 String mSystolicString = systolicEditText.getText().toString();
 
@@ -426,5 +437,43 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    private void setLocal(String lang){
+        Locale myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        Intent refresh = new Intent(this, MainActivity.class);
+        startActivity(refresh);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.english:
+                if (item.isChecked())
+                    item.setChecked(false);
+                else item.setChecked(true);
+                setLocal("en");
+                return true;
+            case R.id.espanol:
+                if (item.isChecked())
+                    item.setChecked(false);
+                else item.setChecked(true);
+                setLocal("es");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }
+
