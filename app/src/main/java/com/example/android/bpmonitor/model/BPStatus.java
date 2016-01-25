@@ -10,22 +10,22 @@ public class BPStatus{
     public String getBPStatus(int s, int d){
         if((s>120)||(d>80)){
 
-            mBPStatus = "high";
+            mBPStatus = "high                ";
 
             if(s<90){
-                mBPStatus = "systolic low and diastolic high";
+                mBPStatus = "syst:low, diast:high";
             }
 
             if(d<60){
-                mBPStatus = "systolic high and diastolic low";
+                mBPStatus = "syst:high, diast:low";
             }
 
         }
         else if (((s>=90)&&(s<=120)&&((d>=60)&&(d<=80)))) {
-            mBPStatus = "normal";
+            mBPStatus = "normal              ";
         }
         else{
-            mBPStatus = "low";
+            mBPStatus = "low                 ";
         }
         return mBPStatus;
     }

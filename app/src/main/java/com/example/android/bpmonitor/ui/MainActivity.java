@@ -44,6 +44,15 @@ public class MainActivity extends ActionBarActivity {
     private String mSystolicDiastolicString;
     private String mLanguagePreference;
 
+    // Create an array of seven strings to pass it to the DisplayActivity's ListView to display
+    // the results
+
+    // Put in some dummy data into displayArray (array of seven strings) to experiment.
+    // Later, I will fill this array of strings with the readings extracted from the
+    // weekly_readings string. This will be transmitted to DisplayActivity via an Intent.
+
+    private String[] displayArray = {"Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -296,6 +305,28 @@ public class MainActivity extends ActionBarActivity {
 
                     mSystolicDiastolicString = mWeeklyReadingKeeper.getAllSystolicDiastolic();
 
+                    // Testing testing. Could I put data into displayArray here?
+
+                        for(int i=0; i<mIndex; i++) {
+                            String temp = "";
+                            for (int j = 37*i; j <= ((37*i)+36); j++) {
+
+
+                                char c = mWeeklyReadings.charAt(j);
+                                if (c != '.') {
+                                    temp = temp + c;
+                                }
+
+
+                                displayArray[i] = temp;
+                                //displayArray[0] = temp;
+
+                            }
+                        }
+
+
+                    // Test ends here.
+
                     sharedPreferences = MainActivity.this
                             .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
 
@@ -371,8 +402,16 @@ public class MainActivity extends ActionBarActivity {
                     // Start a new Intent and transmit the weeklyReadings string to a new screen
                     // that displays the results on a list view.
 
+                    // Also, transmit the displayArray that I have filled in with dummy data:
+                    // "Day 1, Day 2, ...", via the Intent. When I get this to work, I will
+                    // pass this array of strings to the ListView, and not the weekly_readings
+                    // string.
+
+
+
                     Intent intent = new Intent(MainActivity.this, DisplayActivity.class);
                     intent.putExtra(getString(R.string.weekly_readings), mWeeklyReadings);
+                    intent.putExtra(getString(R.string.display_array), displayArray);
                     startActivity(intent);
                 }
 

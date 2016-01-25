@@ -24,7 +24,6 @@
     <string name="return_main_prompt">RETURN TO MAIN SCREEN</string>
     <string name="weekly_readings">weekly_readings</string>
     <string name="reading_count_prompt">Out of 7 days, you have stored:</string>
-    <string name="daily_readings_array">daily_readings_array</string>
     <string name="English">English</string>
     <string name="Espanol">Espanol</string>
     <string name="empty_reading_alert">You need to enter a reading!</string>
@@ -41,6 +40,7 @@
     <string name="no_string">NO</string>
     <string name="clear_readings_confirm_message">CLEAR ALL READINGS STORED THIS WEEK</string>
     <string name="clear_readings_confirm_question">Are you sure you want to clear them?</string>
+    <string name="display_array">display_array</string>
 
 
 </resources>

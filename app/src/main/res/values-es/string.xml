@@ -23,7 +23,6 @@
     <string name="return_main_prompt">RETURN TO MAIN SCREEN</string>
     <string name="weekly_readings">weekly_readings</string>
     <string name="reading_count_prompt">De 7 días, has guardado:</string>
-    <string name="daily_readings_array">daily_readings_array</string>
     <string name="empty_reading_alert">¡Necesitas entrar una lectura!</string>
     <string name="max_alert">El máximo es 999!</string>
     <string name="keeper_full_message">Archivo está lleno. Se puede almacenar un máximo de 7 días de lecturas. Bórralas primero.</string>
@@ -38,5 +37,6 @@
     <string name="no_string">NO</string>
     <string name="clear_readings_confirm_message">BORRAR TODAS LAS LECTURAS GUARDADAS ESTA SEMANA</string>
     <string name="clear_readings_confirm_question">¿Estás seguro de que quieres borrarlas?</string>
+    <string name="display_array">display_array</string>
 
 </resources>
