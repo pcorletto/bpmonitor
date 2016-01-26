@@ -120,8 +120,8 @@ public class MainActivity extends ActionBarActivity {
                 //long.
 
                 if(mSystolicString.length()>3){
-                systolicEditText.setError(getString(R.string.max_alert));
-                return;
+                    systolicEditText.setError(getString(R.string.max_alert));
+                    return;
                 }
 
                 mSystolic = Integer.parseInt(mSystolicString);
@@ -138,8 +138,8 @@ public class MainActivity extends ActionBarActivity {
                 //long.
 
                 if(mDiastolicString.length()>3){
-                diastolicEditText.setError(getString(R.string.max_alert));
-                return;
+                    diastolicEditText.setError(getString(R.string.max_alert));
+                    return;
                 }
 
                 mDiastolic = Integer.parseInt(mDiastolicString);
@@ -245,8 +245,8 @@ public class MainActivity extends ActionBarActivity {
                     //long.
 
                     if(mSystolicString.length()>3){
-                    systolicEditText.setError(getString(R.string.max_alert));
-                    return;
+                        systolicEditText.setError(getString(R.string.max_alert));
+                        return;
                     }
 
                     mSystolic = Integer.parseInt(mSystolicString);
@@ -264,8 +264,8 @@ public class MainActivity extends ActionBarActivity {
                     //long.
 
                     if(mDiastolicString.length()>3){
-                    diastolicEditText.setError(getString(R.string.max_alert));
-                    return;
+                        diastolicEditText.setError(getString(R.string.max_alert));
+                        return;
 
                     }
 
@@ -307,25 +307,25 @@ public class MainActivity extends ActionBarActivity {
 
                     // Testing testing. Could I put data into displayArray here?
 
-                        for(int i=0; i<mIndex; i++) {
-                            String temp = "";
-                            for (int j = 37*i; j <= ((37*i)+36); j++) {
+                    for(int i=0; i<mIndex; i++) {
+                        String temp = "";
+                        for (int j = 37*i; j <= ((37*i)+36); j++) {
 
 
-                                char c = mWeeklyReadings.charAt(j);
-                                if (c != '.') {
-                                    temp = temp + c;
-                                }
-
-
-                                displayArray[i] = temp;
-
-
+                            char c = mWeeklyReadings.charAt(j);
+                            if (c != '.') {
+                                temp = temp + c;
                             }
+
+
+                            displayArray[i] = temp;
+
+
                         }
+                    }
 
 
-                    displayArray[mIndex]=mWeeklyReadingKeeper.showAverage();
+                    displayArray[mIndex]=mWeeklyReadingKeeper.showAverage(mIndex);
 
                     sharedPreferences = MainActivity.this
                             .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
@@ -399,6 +399,28 @@ public class MainActivity extends ActionBarActivity {
                 else {
 
 
+                    Toast.makeText(MainActivity.this, "Index:"+mIndex, Toast.LENGTH_LONG).show();
+
+                    for(int i=0; i<mIndex; i++) {
+                        String temp = "";
+                        for (int j = 37*i; j <= ((37*i)+36); j++) {
+
+
+                            char c = mWeeklyReadings.charAt(j);
+                            if (c != '.') {
+                                temp = temp + c;
+                            }
+
+
+                            displayArray[i] = temp;
+
+
+                        }
+                    }
+
+
+                    //displayArray[mIndex]=mWeeklyReadingKeeper.showAverage(mIndex);
+
                     // Start a new Intent and transmit the weeklyReadings string to a new screen
                     // that displays the results on a list view.
 
@@ -456,6 +478,15 @@ public class MainActivity extends ActionBarActivity {
                         systolicEditText.setText("");
                         diastolicEditText.setText("");
                         systolicEditText.requestFocus();
+
+                        displayArray[0] = "";
+                        displayArray[1] = "";
+                        displayArray[2] = "";
+                        displayArray[3] = "";
+                        displayArray[4] = "";
+                        displayArray[5] = "";
+                        displayArray[6] = "";
+                        displayArray[7] = "";
 
                         SharedPreferences sharedPreferences = MainActivity.this
                                 .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
@@ -564,4 +595,3 @@ public class MainActivity extends ActionBarActivity {
     }
 
 }
-

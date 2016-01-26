@@ -73,10 +73,10 @@ public class Keeper {
 
             // Concatenate the days, the systolic and diastolic values and the pressure status.
 
-                    msg = msg + "Day " + (i+1) + ": " +
+            msg = msg + "Day " + (i+1) + ": " +
                     systolicString + "/" +
                     diastolicString + ": " +
-                            mReading[i].getBPStatus(mReading[i].getSystolic(), mReading[i].getDiastolic()) + ".";
+                    mReading[i].getBPStatus(mReading[i].getSystolic(), mReading[i].getDiastolic()) + ".";
 
 
         }
@@ -140,19 +140,19 @@ public class Keeper {
 
     }
 
-    public String showAverage(){
+    public String showAverage(int index){
         String avg = "AVRG: ";
         int sumSystolic = 0;
         int sumDiastolic = 0;
         int avgSystolic = 0;
         int avgDiastolic = 0;
         String bpStatus="";
-        for(int i=0; i<mIndex; i++){
+        for(int i=0; i<index; i++){
             sumSystolic = sumSystolic + mReading[i].getSystolic();
             sumDiastolic = sumDiastolic + mReading[i].getDiastolic();
         }
-        avgSystolic = sumSystolic / mIndex;
-        avgDiastolic = sumDiastolic / mIndex;
+        avgSystolic = sumSystolic / index;
+        avgDiastolic = sumDiastolic / index;
         bpStatus = mBPStatus.getBPStatus(avgSystolic, avgDiastolic);
 
         String avgSystolicString = putLeadingZeroes(avgSystolic);
