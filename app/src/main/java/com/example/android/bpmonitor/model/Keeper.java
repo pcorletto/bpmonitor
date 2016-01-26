@@ -81,7 +81,6 @@ public class Keeper {
 
         }
         return msg;
-        //+ showAverage();
     }
 
     public String getAllSystolicDiastolic(){
@@ -142,7 +141,7 @@ public class Keeper {
     }
 
     public String showAverage(){
-        String avg = "AVG. =";
+        String avg = "AVRG: ";
         int sumSystolic = 0;
         int sumDiastolic = 0;
         int avgSystolic = 0;
@@ -156,7 +155,10 @@ public class Keeper {
         avgDiastolic = sumDiastolic / mIndex;
         bpStatus = mBPStatus.getBPStatus(avgSystolic, avgDiastolic);
 
-        avg = avg + ":\t\t" +  avgSystolic + " / " + avgDiastolic + " : " + bpStatus;
+        String avgSystolicString = putLeadingZeroes(avgSystolic);
+        String avgDiastolicString = putLeadingZeroes(avgDiastolic);
+
+        avg = avg + avgSystolicString + "/" + avgDiastolicString + ": " + bpStatus +".";
 
         return avg;
 

@@ -51,7 +51,7 @@ public class MainActivity extends ActionBarActivity {
     // Later, I will fill this array of strings with the readings extracted from the
     // weekly_readings string. This will be transmitted to DisplayActivity via an Intent.
 
-    private String[] displayArray = {"Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"};
+    private String[] displayArray = {"Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "AVRG"};
 
 
     @Override
@@ -319,13 +319,13 @@ public class MainActivity extends ActionBarActivity {
 
 
                                 displayArray[i] = temp;
-                                //displayArray[0] = temp;
+
 
                             }
                         }
 
 
-                    // Test ends here.
+                    displayArray[mIndex]=mWeeklyReadingKeeper.showAverage();
 
                     sharedPreferences = MainActivity.this
                             .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
