@@ -228,6 +228,9 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
+                // Toast for debugging and tracking purposes
+                Toast.makeText(MainActivity.this, "Index:"+mIndex, Toast.LENGTH_LONG).show();
+
                 if (mWeeklyReadingKeeper.isFull()) {
                     Toast.makeText(MainActivity.this, getString(R.string.keeper_full_message),
                             Toast.LENGTH_LONG).show();
@@ -276,8 +279,6 @@ public class MainActivity extends ActionBarActivity {
                     SharedPreferences sharedPreferences = MainActivity.this
                             .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
                     mIndex = sharedPreferences.getInt(getString(R.string.READING_COUNT), 0);
-
-
 
                     mWeeklyReadingKeeper.setIndex(mIndex);
 
@@ -399,8 +400,6 @@ public class MainActivity extends ActionBarActivity {
                 else {
 
 
-                    Toast.makeText(MainActivity.this, "Index:"+mIndex, Toast.LENGTH_LONG).show();
-
                     for(int i=0; i<mIndex; i++) {
                         String temp = "";
                         for (int j = 37*i; j <= ((37*i)+36); j++) {
@@ -416,6 +415,13 @@ public class MainActivity extends ActionBarActivity {
 
 
                         }
+                    }
+
+                    // Clear dummy values from the displayArray positions from displayArray[mIndex]
+                    // to displayArray[6]
+
+                    for(int k=mIndex; k<=7; k++){
+                        displayArray[k]="";
                     }
 
 
@@ -487,6 +493,7 @@ public class MainActivity extends ActionBarActivity {
                         displayArray[5] = "";
                         displayArray[6] = "";
                         displayArray[7] = "";
+                        mIndex=0;
 
                         SharedPreferences sharedPreferences = MainActivity.this
                                 .getSharedPreferences(getString(R.string.BP_PREF_FILE), MODE_PRIVATE);
