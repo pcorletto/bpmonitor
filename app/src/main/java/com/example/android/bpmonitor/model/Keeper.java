@@ -140,25 +140,32 @@ public class Keeper {
 
     }
 
-    public String showAverage(int index){
+    public String showAverage(int dayCount){
+
+
         String avg = "AVRG: ";
         int sumSystolic = 0;
         int sumDiastolic = 0;
         int avgSystolic = 0;
         int avgDiastolic = 0;
         String bpStatus="";
-        for(int i=0; i<index; i++){
+
+        for(int i=0; i<dayCount; i++){
+            //sumSystolic = sumSystolic + 120;
             sumSystolic = sumSystolic + mReading[i].getSystolic();
+            //sumDiastolic = sumDiastolic + 80;
             sumDiastolic = sumDiastolic + mReading[i].getDiastolic();
         }
-        avgSystolic = sumSystolic / index;
-        avgDiastolic = sumDiastolic / index;
+        avgSystolic = sumSystolic / dayCount;
+        avgDiastolic = sumDiastolic / dayCount;
         bpStatus = mBPStatus.getBPStatus(avgSystolic, avgDiastolic);
 
         String avgSystolicString = putLeadingZeroes(avgSystolic);
         String avgDiastolicString = putLeadingZeroes(avgDiastolic);
 
         avg = avg + avgSystolicString + "/" + avgDiastolicString + ": " + bpStatus +".";
+
+        //String dummy = "abc";
 
         return avg;
 

@@ -40,6 +40,7 @@ public class MainActivity extends ActionBarActivity {
     private Reading mReading = new Reading();
     private Keeper mWeeklyReadingKeeper = new Keeper();
     private int mIndex;
+    private int mDayCount;
     private String mWeeklyReadings;
     private String mSystolicDiastolicString;
     private String mLanguagePreference;
@@ -228,9 +229,6 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                // Toast for debugging and tracking purposes
-                Toast.makeText(MainActivity.this, "Index:"+mIndex, Toast.LENGTH_LONG).show();
-
                 if (mWeeklyReadingKeeper.isFull()) {
                     Toast.makeText(MainActivity.this, getString(R.string.keeper_full_message),
                             Toast.LENGTH_LONG).show();
@@ -325,7 +323,6 @@ public class MainActivity extends ActionBarActivity {
                         }
                     }
 
-
                     displayArray[mIndex]=mWeeklyReadingKeeper.showAverage(mIndex);
 
                     sharedPreferences = MainActivity.this
@@ -387,6 +384,7 @@ public class MainActivity extends ActionBarActivity {
 
                 mIndex = sharedPreferences.getInt(getString(R.string.READING_COUNT),0);
                 mWeeklyReadings = sharedPreferences.getString(getString(R.string.WEEKLY_READINGS),"");
+                mSystolicDiastolicString = sharedPreferences.getString(getString(R.string.SYSTOLIC_DIASTOLIC_STRING), "");
 
                 // If the keeper is empty, alert the user.
 
@@ -398,6 +396,32 @@ public class MainActivity extends ActionBarActivity {
                 }
 
                 else {
+
+
+
+                    // Clear dummy values from the displayArray positions from displayArray[mIndex]
+                    // to displayArray[6]
+
+
+                    for(int k=mIndex; k<=7; k++){
+                        displayArray[k]="";
+                    }
+
+                    // Reload the mWeeklyReadingKeeper with readings. I will refactor this code
+                    // and have it in a method all by itself: reloadArray
+
+                    // Re-fill the readings keeper array with the values previously stored
+                    // in the mSystolicDiastolicString stored in the SharedPreferences file.
+                    // I will use a method I called "reloadArray".
+                    // Otherwise, we would get a Null Pointer Exception for trying to
+                    // get values from an array with empty positions when we call the
+                    // getAllReadings method. I will store the extracted values from
+                    // systolic and diastolic (mSystolicDiastolicString) into index from
+                    // 0 to currentIndex
+
+                    mWeeklyReadingKeeper.setSystolicDiastolicString(mSystolicDiastolicString);
+
+                    mWeeklyReadingKeeper.reloadArray();
 
 
                     for(int i=0; i<mIndex; i++) {
@@ -417,15 +441,13 @@ public class MainActivity extends ActionBarActivity {
                         }
                     }
 
-                    // Clear dummy values from the displayArray positions from displayArray[mIndex]
-                    // to displayArray[6]
+                    // Toast for debugging and tracking purposes
+                    Toast.makeText(MainActivity.this, "Index sent to average is:"+mIndex, Toast.LENGTH_LONG).show();
 
-                    for(int k=mIndex; k<=7; k++){
-                        displayArray[k]="";
-                    }
+                    //mWeeklyReadingKeeper.reloadArray();
 
+                    displayArray[mIndex]=mWeeklyReadingKeeper.showAverage(mIndex);
 
-                    //displayArray[mIndex]=mWeeklyReadingKeeper.showAverage(mIndex);
 
                     // Start a new Intent and transmit the weeklyReadings string to a new screen
                     // that displays the results on a list view.
