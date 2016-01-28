@@ -38,5 +38,6 @@
     <string name="clear_readings_confirm_message">BORRAR TODAS LAS LECTURAS GUARDADAS ESTA SEMANA</string>
     <string name="clear_readings_confirm_question">¿Estás seguro de que quieres borrarlas?</string>
     <string name="display_array">display_array</string>
+    <string  name="on_back_pressed_alert">Presiónelo otra vez para cerrar la aplicación</string>
 
 </resources>

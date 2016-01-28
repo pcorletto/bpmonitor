@@ -19,7 +19,9 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+import android.os.*;
 
 import com.example.android.bpmonitor.R;
 import com.example.android.bpmonitor.model.Keeper;
@@ -31,6 +33,7 @@ import java.util.Locale;
 
 public class MainActivity extends ActionBarActivity {
 
+    private RelativeLayout mRelativeLayout;
     private EditText lastSystolicEditText, lastDiastolicEditText,
             systolicEditText, diastolicEditText, readingCountEditText;
     private Button bpCheckButton, storeReadingButton, displayReadingsButton, resetUIButton,
@@ -44,6 +47,7 @@ public class MainActivity extends ActionBarActivity {
     private String mWeeklyReadings;
     private String mSystolicDiastolicString;
     private String mLanguagePreference;
+    private boolean backPressToExit = false;
 
     // Create an array of seven strings to pass it to the DisplayActivity's ListView to display
     // the results
@@ -59,6 +63,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mRelativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
         lastSystolicEditText = (EditText) findViewById(R.id.lastSystolicEditText);
         lastDiastolicEditText = (EditText) findViewById(R.id.lastDiastolicEditText);
@@ -291,7 +297,7 @@ public class MainActivity extends ActionBarActivity {
 
                     mWeeklyReadingKeeper.setSystolicDiastolicString(mSystolicDiastolicString);
 
-                    mWeeklyReadingKeeper.reloadArray();
+                    mWeeklyReadingKeeper.reloadArray(mSystolicDiastolicString, mIndex);
 
                     mWeeklyReadingKeeper.setAReading(mSystolic, mDiastolic);
 
@@ -386,6 +392,8 @@ public class MainActivity extends ActionBarActivity {
                 mWeeklyReadings = sharedPreferences.getString(getString(R.string.WEEKLY_READINGS),"");
                 mSystolicDiastolicString = sharedPreferences.getString(getString(R.string.SYSTOLIC_DIASTOLIC_STRING), "");
 
+
+
                 // If the keeper is empty, alert the user.
 
                 if(mIndex==0){
@@ -419,9 +427,12 @@ public class MainActivity extends ActionBarActivity {
                     // systolic and diastolic (mSystolicDiastolicString) into index from
                     // 0 to currentIndex
 
-                    mWeeklyReadingKeeper.setSystolicDiastolicString(mSystolicDiastolicString);
+                    //mWeeklyReadingKeeper.setSystolicDiastolicString(mSystolicDiastolicString);
 
-                    mWeeklyReadingKeeper.reloadArray();
+                    mWeeklyReadingKeeper.reloadArray(mSystolicDiastolicString, mIndex);
+
+                    //Toast.makeText(MainActivity.this, mSystolicDiastolicString, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(MainActivity.this, mWeeklyReadingKeeper.mReading[1].getSystolic()+"", Toast.LENGTH_LONG).show();
 
 
                     for(int i=0; i<mIndex; i++) {
@@ -444,7 +455,6 @@ public class MainActivity extends ActionBarActivity {
                     // Toast for debugging and tracking purposes
                     Toast.makeText(MainActivity.this, "Index sent to average is:"+mIndex, Toast.LENGTH_LONG).show();
 
-                    //mWeeklyReadingKeeper.reloadArray();
 
                     displayArray[mIndex]=mWeeklyReadingKeeper.showAverage(mIndex);
 
@@ -623,4 +633,30 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    @Override
+    public void onBackPressed(){
+        if (backPressToExit) {
+            super.onBackPressed();
+        }
+        this.backPressToExit = true;
+        Toast.makeText(this, getString(R.string.on_back_pressed_alert), Toast.LENGTH_SHORT).show();
+
+
+        new Handler().postDelayed(new Runnable() {
+
+
+            @Override
+
+
+            public void run() {
+
+
+                backPressToExit = false;
+            }
+        }, 2000);
+    }
+
+
 }
+
+

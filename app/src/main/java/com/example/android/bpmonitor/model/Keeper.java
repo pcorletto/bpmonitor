@@ -13,20 +13,20 @@ public class Keeper {
 
     private BPStatus mBPStatus = new BPStatus();
 
-    public void reloadArray(){
+    public void reloadArray(String passedInString, int index){
 
-        for(int i=0; i<mIndex; i++) {
+        for(int i=0; i<index; i++) {
 
             // Extract the diastolic and systolic values from the readings
             // from the stored mSystolicDiastolicString string passed in from MainActivity.
 
-            String systolic = mSystolicDiastolicString.substring((6*i),(6*i+3));
+            String systolic = passedInString.substring((6*i),(6*i+3));
 
             int s = Integer.parseInt(systolic);
 
-            String diastolic1 = mSystolicDiastolicString.substring((6*i+3),(6*i+5));
+            String diastolic1 = passedInString.substring((6*i+3),(6*i+5));
 
-            char c = mSystolicDiastolicString.charAt(6*i+5);
+            char c = passedInString.charAt(6*i+5);
 
             String diastolic = diastolic1 + c;
 

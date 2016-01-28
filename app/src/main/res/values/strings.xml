@@ -41,6 +41,7 @@
     <string name="clear_readings_confirm_message">CLEAR ALL READINGS STORED THIS WEEK</string>
     <string name="clear_readings_confirm_question">Are you sure you want to clear them?</string>
     <string name="display_array">display_array</string>
+    <string  name="on_back_pressed_alert">Press again to close app</string>
 
 
 </resources>
