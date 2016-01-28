@@ -1,5 +1,7 @@
 package com.example.android.bpmonitor.model;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by hernandez on 12/9/2015.
  */
@@ -146,26 +148,35 @@ public class Keeper {
         String avg = "AVRG: ";
         int sumSystolic = 0;
         int sumDiastolic = 0;
-        int avgSystolic = 0;
-        int avgDiastolic = 0;
+        double avgSystolic = 0;
+        double avgDiastolic = 0;
         String bpStatus="";
 
         for(int i=0; i<dayCount; i++){
-            //sumSystolic = sumSystolic + 120;
+
             sumSystolic = sumSystolic + mReading[i].getSystolic();
-            //sumDiastolic = sumDiastolic + 80;
+
             sumDiastolic = sumDiastolic + mReading[i].getDiastolic();
         }
-        avgSystolic = sumSystolic / dayCount;
-        avgDiastolic = sumDiastolic / dayCount;
+        avgSystolic = (double) sumSystolic / dayCount;
+        avgDiastolic = (double) sumDiastolic / dayCount;
+
+        // Round avgSystolic and avgDiastolic (double values) to the nearest int
+        // For example, if the value is 118.7, round it to 119.
+
+        DecimalFormat df = new DecimalFormat("#");
+        double roundedAvgSystolic = Math.round(avgSystolic);
+        double roundedAvgDiastolic = Math.round(avgDiastolic);
+
+        int avgSystolicAsInt = Integer.parseInt(df.format(roundedAvgSystolic));
+        int avgDiastolicAsInt = Integer.parseInt(df.format(roundedAvgDiastolic));
+
         bpStatus = mBPStatus.getBPStatus(avgSystolic, avgDiastolic);
 
-        String avgSystolicString = putLeadingZeroes(avgSystolic);
-        String avgDiastolicString = putLeadingZeroes(avgDiastolic);
+        String avgSystolicString = putLeadingZeroes(avgSystolicAsInt);
+        String avgDiastolicString = putLeadingZeroes(avgDiastolicAsInt);
 
         avg = avg + avgSystolicString + "/" + avgDiastolicString + ": " + bpStatus +".";
-
-        //String dummy = "abc";
 
         return avg;
 

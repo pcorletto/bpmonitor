@@ -431,9 +431,6 @@ public class MainActivity extends ActionBarActivity {
 
                     mWeeklyReadingKeeper.reloadArray(mSystolicDiastolicString, mIndex);
 
-                    //Toast.makeText(MainActivity.this, mSystolicDiastolicString, Toast.LENGTH_LONG).show();
-                    //Toast.makeText(MainActivity.this, mWeeklyReadingKeeper.mReading[1].getSystolic()+"", Toast.LENGTH_LONG).show();
-
 
                     for(int i=0; i<mIndex; i++) {
                         String temp = "";
@@ -451,10 +448,6 @@ public class MainActivity extends ActionBarActivity {
 
                         }
                     }
-
-                    // Toast for debugging and tracking purposes
-                    Toast.makeText(MainActivity.this, "Index sent to average is:"+mIndex, Toast.LENGTH_LONG).show();
-
 
                     displayArray[mIndex]=mWeeklyReadingKeeper.showAverage(mIndex);
 

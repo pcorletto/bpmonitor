@@ -7,7 +7,7 @@ public class BPStatus{
 
     private String mBPStatus = "";
 
-    public String getBPStatus(int s, int d){
+    public String getBPStatus(double s, double d){
         if((s>120)||(d>80)){
 
             mBPStatus = "high                ";
