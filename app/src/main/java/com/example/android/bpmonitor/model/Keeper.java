@@ -182,8 +182,8 @@ public class Keeper {
 
     }
 
-    public boolean isEmpty(){
-        if(mIndex==0) {
+    public boolean isEmpty(int index){
+        if(index==0) {
             return true;
         }
         else{
@@ -191,8 +191,8 @@ public class Keeper {
         }
     }
 
-    public boolean isFull(){
-        if(mIndex==7) {
+    public boolean isFull(int index){
+        if(index==7) {
             return true;
         }
         else{

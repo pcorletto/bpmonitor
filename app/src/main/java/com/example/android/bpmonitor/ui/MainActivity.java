@@ -235,7 +235,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                if (mWeeklyReadingKeeper.isFull()) {
+                if (mWeeklyReadingKeeper.isFull(mIndex)) {
                     Toast.makeText(MainActivity.this, getString(R.string.keeper_full_message),
                             Toast.LENGTH_LONG).show();
                 } else {
@@ -396,7 +396,7 @@ public class MainActivity extends ActionBarActivity {
 
                 // If the keeper is empty, alert the user.
 
-                if(mIndex==0){
+                if(mWeeklyReadingKeeper.isEmpty(mIndex)){
                     Toast.makeText(MainActivity.this,
                             getString(R.string.empty_keeper_alert),
                             Toast.LENGTH_LONG).show();
