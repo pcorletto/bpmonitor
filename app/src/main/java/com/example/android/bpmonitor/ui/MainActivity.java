@@ -8,7 +8,10 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -21,7 +24,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import android.os.*;
 
 import com.example.android.bpmonitor.R;
 import com.example.android.bpmonitor.model.Keeper;
@@ -352,6 +354,12 @@ public class MainActivity extends ActionBarActivity {
                     lastDiastolicEditText.setText(mDiastolic + "");
 
                     readingCountEditText.setText(mIndex + "");
+
+                    // Play a beeping sound once the reading is successfully stored.
+
+                    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                    toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+
 
                     // Mark any high or low readings in red.
 
