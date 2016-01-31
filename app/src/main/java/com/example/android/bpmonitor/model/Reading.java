@@ -5,6 +5,7 @@ package com.example.android.bpmonitor.model;
  */
 public class Reading {
     private int mSystolic, mDiastolic;
+    private String mDateTime;
     private String mBPStatus;
     private BPStatus bpStatus = new BPStatus();
 
@@ -14,11 +15,12 @@ public class Reading {
 
     }
 
-    public Reading (int systolic, int diastolic){
+    public Reading (int systolic, int diastolic, String dateTime){
 
         mSystolic = systolic;
         mDiastolic = diastolic;
         mBPStatus = this.getBPStatus(systolic, diastolic);
+        mDateTime = dateTime;
 
     }
 
@@ -48,6 +50,10 @@ public class Reading {
 
         return mBPStatus;
 
+    }
+
+    public String getDateAndTime(){
+        return mDateTime;
     }
 
 }

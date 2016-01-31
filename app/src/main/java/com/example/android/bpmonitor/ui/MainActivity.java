@@ -29,6 +29,7 @@ import com.example.android.bpmonitor.R;
 import com.example.android.bpmonitor.model.Keeper;
 import com.example.android.bpmonitor.model.Reading;
 
+import java.util.Calendar;
 import java.util.Locale;
 
 
@@ -301,7 +302,7 @@ public class MainActivity extends ActionBarActivity {
 
                     mWeeklyReadingKeeper.reloadArray(mSystolicDiastolicString, mIndex);
 
-                    mWeeklyReadingKeeper.setAReading(mSystolic, mDiastolic);
+                    mWeeklyReadingKeeper.setAReading(mSystolic, mDiastolic, getCurrentDateAndTime());
 
                     // Store the last reading on a SharedPreferences file so that it can be
                     // displayed even after the app is stopped.
@@ -389,6 +390,10 @@ public class MainActivity extends ActionBarActivity {
         displayReadingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
+                
 
 
 
@@ -657,7 +662,36 @@ public class MainActivity extends ActionBarActivity {
         }, 2000);
     }
 
+    public String getCurrentDateAndTime(){
+
+        Calendar ci = Calendar.getInstance();
+
+        String am_pm = "";
+        if(ci.get(Calendar.AM_PM)==0){
+            am_pm = "AM";
+        }
+
+        else{
+            am_pm = "PM";
+        }
+
+        // Add one to the number of the month, because in Java, January is represented
+        // using zero.
+
+        String formattedMonth = String.format("%02d", ci.get(Calendar.MONTH)+1 );
+        String formattedDay = String.format("%02d", ci.get(Calendar.DAY_OF_MONTH));
+        String formattedHour = String.format("%02d", ci.get(Calendar.HOUR));
+        String formattedMinute = String.format("%02d", ci.get(Calendar.MINUTE));
+
+
+        String ciMonthDayTime = formattedMonth + "/" + formattedDay
+
+                + " " + formattedHour  + ":" + formattedMinute  + " " + am_pm;
+
+        return ciMonthDayTime;
+
+
+    }
+
 
 }
-
-

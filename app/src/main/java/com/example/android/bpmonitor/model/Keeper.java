@@ -1,6 +1,7 @@
 package com.example.android.bpmonitor.model;
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
 
 /**
  * Created by hernandez on 12/9/2015.
@@ -22,19 +23,23 @@ public class Keeper {
             // Extract the diastolic and systolic values from the readings
             // from the stored mSystolicDiastolicString string passed in from MainActivity.
 
-            String systolic = passedInString.substring((6*i),(6*i+3));
+            String systolic = passedInString.substring((20*i),(20*i+3));
 
             int s = Integer.parseInt(systolic);
 
-            String diastolic1 = passedInString.substring((6*i+3),(6*i+5));
-
-            char c = passedInString.charAt(6*i+5);
-
-            String diastolic = diastolic1 + c;
+            String diastolic = passedInString.substring((20*i+3),(20*i+6));
 
             int d = Integer.parseInt(diastolic);
 
-            mReading[i] = new Reading(s, d);
+
+            String dateAndTime1 = passedInString.substring((20*i+6),(20*i+19));
+
+            char eol = passedInString.charAt(20*i+19);
+
+            String dateAndTime = dateAndTime1 + eol;
+
+
+            mReading[i] = new Reading(s, d, dateAndTime);
 
         }
 
@@ -42,12 +47,12 @@ public class Keeper {
     }
 
 
-    public void setAReading(int s, int d){
+    public void setAReading(int s, int d, String dateTime){
         if(mIndex==7){
             //Keeper is full. Do not store any more readings...
         }
         else {
-            mReading[mIndex] = new Reading(s, d);
+            mReading[mIndex] = new Reading(s, d, dateTime);
 
             mIndex++;
         }
@@ -72,15 +77,18 @@ public class Keeper {
             systolicString = putLeadingZeroes(systolicValue);
             diastolicString = putLeadingZeroes(diastolicValue);
 
-
+            //The next block works perfectly fine, but I will try to put in dates and times now.
             // Concatenate the days, the systolic and diastolic values and the pressure status.
 
-            msg = msg + "Day " + (i+1) + ": " +
+            //msg = msg + "Day " + (i+1) + ": " +
+            //        systolicString + "/" +
+            //        diastolicString + ": " +
+            //        mReading[i].getBPStatus(mReading[i].getSystolic(), mReading[i].getDiastolic()) + ".";
+
+            msg = msg + mReading[i].getDateAndTime() + ": " +
                     systolicString + "/" +
                     diastolicString + ": " +
                     mReading[i].getBPStatus(mReading[i].getSystolic(), mReading[i].getDiastolic()) + ".";
-
-
         }
         return msg;
     }
@@ -104,7 +112,7 @@ public class Keeper {
 
             diastolicString = putLeadingZeroes(diastolicValue);
 
-            msg = msg + systolicString + diastolicString;
+            msg = msg + systolicString + diastolicString + mReading[i].getDateAndTime();
 
         }
 
@@ -217,6 +225,39 @@ public class Keeper {
             return value + "";
 
         }
+
+    }
+
+    public String getDateAndTime(){
+
+        Calendar ci = Calendar.getInstance();
+
+        String am_pm = "";
+        if(ci.get(Calendar.AM_PM)==0){
+            am_pm = "AM";
+        }
+
+        else{
+            am_pm = "PM";
+        }
+
+        DecimalFormat df = new DecimalFormat("##");
+
+        // Add one to the number of the month, because in Java, January is represented
+        // using zero.
+
+        String formattedMonth = String.format("%02d", ci.get(Calendar.MONTH)+1 );
+        String formattedDay = String.format("%02d", ci.get(Calendar.DAY_OF_MONTH));
+        String formattedHour = String.format("%02d", ci.get(Calendar.HOUR));
+        String formattedMinute = String.format("%02d", ci.get(Calendar.MINUTE));
+
+
+        String ciMonthDayTime = formattedMonth + "/" + formattedDay
+
+                + " " + formattedHour  + ":" + formattedMinute  + " " + am_pm;
+
+        return ciMonthDayTime;
+
 
     }
 
