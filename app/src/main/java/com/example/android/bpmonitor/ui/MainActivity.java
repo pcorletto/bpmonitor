@@ -123,6 +123,8 @@ public class MainActivity extends ActionBarActivity {
                 // Check if the user did not enter anything. If no entry, then alert
                 if(TextUtils.isEmpty(mSystolicString)){
                     systolicEditText.setError(getString(R.string.empty_reading_alert));
+                    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                    toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
                     return;
                 }
 
@@ -131,6 +133,8 @@ public class MainActivity extends ActionBarActivity {
 
                 if(mSystolicString.length()>3){
                     systolicEditText.setError(getString(R.string.max_alert));
+                    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                    toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
                     return;
                 }
 
@@ -141,6 +145,8 @@ public class MainActivity extends ActionBarActivity {
                 // Check if the user did not enter anything. If no entry, then alert
                 if(TextUtils.isEmpty(mDiastolicString)){
                     diastolicEditText.setError(getString(R.string.empty_reading_alert));
+                    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                    toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
                     return;
                 }
 
@@ -149,6 +155,8 @@ public class MainActivity extends ActionBarActivity {
 
                 if(mDiastolicString.length()>3){
                     diastolicEditText.setError(getString(R.string.max_alert));
+                    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                    toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
                     return;
                 }
 
@@ -241,6 +249,10 @@ public class MainActivity extends ActionBarActivity {
                 if (mWeeklyReadingKeeper.isFull(mIndex)) {
                     Toast.makeText(MainActivity.this, getString(R.string.keeper_full_message),
                             Toast.LENGTH_LONG).show();
+
+                    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                    toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
+
                 } else {
 
                     String mSystolicString = systolicEditText.getText().toString();
@@ -248,6 +260,8 @@ public class MainActivity extends ActionBarActivity {
                     // Check if the user did not enter anything. If no entry, then alert
                     if (TextUtils.isEmpty(mSystolicString)) {
                         systolicEditText.setError(getString(R.string.empty_reading_alert));
+                        ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                        toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
                         return;
                     }
 
@@ -256,6 +270,8 @@ public class MainActivity extends ActionBarActivity {
 
                     if(mSystolicString.length()>3){
                         systolicEditText.setError(getString(R.string.max_alert));
+                        ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                        toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
                         return;
                     }
 
@@ -267,6 +283,8 @@ public class MainActivity extends ActionBarActivity {
                     // Check if the user did not enter anything. If no entry, then alert
                     if (TextUtils.isEmpty(mDiastolicString)) {
                         diastolicEditText.setError(getString(R.string.empty_reading_alert));
+                        ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                        toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
                         return;
                     }
 
@@ -275,6 +293,8 @@ public class MainActivity extends ActionBarActivity {
 
                     if(mDiastolicString.length()>3){
                         diastolicEditText.setError(getString(R.string.max_alert));
+                        ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                        toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
                         return;
 
                     }
@@ -501,6 +521,9 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
+                ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
                 builder.setTitle(getString(R.string.clear_readings_confirm_message));
@@ -683,6 +706,11 @@ public class MainActivity extends ActionBarActivity {
         String formattedHour = String.format("%02d", ci.get(Calendar.HOUR));
         String formattedMinute = String.format("%02d", ci.get(Calendar.MINUTE));
 
+        // If the hour is between 12:00 and 12:59, Java puts 00:00 - 00:59. Convert the 00 to 12:
+
+        if(ci.get(Calendar.HOUR)==0){
+            formattedHour = "12";
+        }
 
         String ciMonthDayTime = formattedMonth + "/" + formattedDay
 

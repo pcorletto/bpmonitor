@@ -1,7 +1,6 @@
 package com.example.android.bpmonitor.model;
 
 import java.text.DecimalFormat;
-import java.util.Calendar;
 
 /**
  * Created by hernandez on 12/9/2015.
@@ -227,39 +226,5 @@ public class Keeper {
         }
 
     }
-
-    public String getDateAndTime(){
-
-        Calendar ci = Calendar.getInstance();
-
-        String am_pm = "";
-        if(ci.get(Calendar.AM_PM)==0){
-            am_pm = "AM";
-        }
-
-        else{
-            am_pm = "PM";
-        }
-
-        DecimalFormat df = new DecimalFormat("##");
-
-        // Add one to the number of the month, because in Java, January is represented
-        // using zero.
-
-        String formattedMonth = String.format("%02d", ci.get(Calendar.MONTH)+1 );
-        String formattedDay = String.format("%02d", ci.get(Calendar.DAY_OF_MONTH));
-        String formattedHour = String.format("%02d", ci.get(Calendar.HOUR));
-        String formattedMinute = String.format("%02d", ci.get(Calendar.MINUTE));
-
-
-        String ciMonthDayTime = formattedMonth + "/" + formattedDay
-
-                + " " + formattedHour  + ":" + formattedMinute  + " " + am_pm;
-
-        return ciMonthDayTime;
-
-
-    }
-
 
 }

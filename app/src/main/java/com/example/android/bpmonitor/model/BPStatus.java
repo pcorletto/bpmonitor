@@ -28,7 +28,7 @@ public class BPStatus{
             mBPStatus = "normal     ";
         }
         else{
-             
+
             mBPStatus = "low        ";
         }
         return mBPStatus;
